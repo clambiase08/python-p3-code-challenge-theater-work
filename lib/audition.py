@@ -1,12 +1,12 @@
 class Audition:
     all = []
 
-    def __init__(self, role, actor, location, phone, hired=False):
+    def __init__(self, role, actor, location, phone):
         self.role = role
         self.actor = actor
         self.location = location
         self.phone = phone
-        self.hired = hired
+        self.hired = False
         Audition.all.append(self)
 
     @property
@@ -20,8 +20,5 @@ class Audition:
         else:
             raise Exception
 
-    def call_back(self, hired):
-        if hired is False:
-            self.hired = True
-        else:
-            self.hired = hired
+    def call_back(self):
+        self.hired = True

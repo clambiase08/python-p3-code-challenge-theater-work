@@ -16,7 +16,6 @@ class Role:
     def character_name(self, value):
         if isinstance(value, str) and len(value) > 0:
             self._character_name = value
-            return self._character_name
         else:
             raise Exception
 
@@ -44,7 +43,7 @@ class Role:
         understudy_auditions = [
             audition for audition in self.auditions() if audition.hired
         ]
-        if not understudy_auditions:
+        if len(understudy_auditions) <= 1:
             return "no actor has been hired for understudy for this role"
         else:
             return understudy_auditions[1]
@@ -54,5 +53,5 @@ class Role:
         return [
             role
             for role in cls.all
-            if not any(audition.hired for audition in role.auditions())
+            if not any([audition.hired for audition in role.auditions()])
         ]
